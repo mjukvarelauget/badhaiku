@@ -1,4 +1,5 @@
-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import random
 import math
 
@@ -10,7 +11,7 @@ import math
 # Pattern definition syntax
 # Improved syllable fill logic (more than just nouns)
 # Passing pattern list til line composer should give a random pattern
-# Richer dictionary, proper adjective conjugation wrt noun gender
+# Richer dictionary, proper adjective conjugation wrt noun gender etc
 
 # If more syllables are needed, add nouns
 # 1: ADJ-NOUN | ADJ | NOUN | VERB | PREP-NOUN
