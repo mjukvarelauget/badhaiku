@@ -12,6 +12,8 @@ import math
 # Improved syllable fill logic (more than just nouns)
 # Passing pattern list til line composer should give a random pattern
 # Richer dictionary, proper adjective conjugation wrt noun gender etc
+# Richer grammar, context free rules to allow generating the structure of a sentence
+# Implement the NGL lexer and parser, provide backend for the haiku generator
 
 # If more syllables are needed, add nouns
 # 1: ADJ-NOUN | ADJ | NOUN | VERB | PREP-NOUN
@@ -22,18 +24,21 @@ WORDS = {
     "ADV": [
         ["raskt", "høyt", "fort", "svalt"],
         ["voldsomt", "sakte"],
-        ["duvende", "angrende", "flygende"]
+        ["duvende", "angrende", "flygende", "susende"]
     ],
 
     "ADJ": [
-        ["rød", "grønn", "sval", "blek"],
-        ["skalla", "vannløs", "smidig", "vakker"]
+        ["rød", "grønn", "sval", "blek", "sprø", "klam"],
+        ["skalla", "vannløs", "smidig", "vakker", "grove", "morken", "skorpe"]
     ],
 
+
     "NOUN": [
-        ["katt", "bil", "hus", "tre", "måne"],
-        ["Skedsmo", "Tempe", "Tåsen", "katte", "grantre"],
-    ],
+        ["katt", "bil", "hus", "tre", "stonks", "sprut", "sprø"],
+        ["Skedsmo", "Tempe", "Tåsen", "katte", "grantre", "måne", "månen", "dåse", "trerot", "skorpe"],
+        ["kjøttkake"]
+    ]
+    ,
 
     "VERB": [
         ["går", "står", "får"],
@@ -49,7 +54,11 @@ WORDS = {
 
 # General procedure: pick a pattern -> pick words -> add nouns if there are syllables left
 
-def compose_line(pattern, syllables):
+def compose_line(patterns, syllables):
+
+    pattern_index = math.floor(random.random()*len(patterns))
+    pattern = patterns[pattern_index]
+
     result = ""
     for word_class in pattern:
         length = min(math.ceil(random.random()*syllables), len(WORDS[word_class]))
@@ -73,9 +82,9 @@ def compose_line(pattern, syllables):
 
 def main():
     result = ""
-    result += compose_line(["ADJ", "NOUN", "ADJ"], 5) + "\n"
-    result += compose_line(["VERB", "PREP", "NOUN"], 7) + "\n"
-    result += compose_line(["ADJ", "NOUN"], 5) + "\n"
+    result += compose_line([["ADJ", "NOUN", "ADJ"], ["ADJ", "ADJ", "NOUN"]], 5) + "\n"
+    result += compose_line([["VERB", "PREP", "NOUN"]], 7) + "\n"
+    result += compose_line([["ADJ", "NOUN"], ["VERB", "VERB"]], 5) + "\n"
 
     print(result)
 
