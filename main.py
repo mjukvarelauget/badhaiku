@@ -79,6 +79,12 @@ def compose_line(patterns, syllables):
 
     return result
 
+def haiku_as_list():
+    return [
+        compose_line([["ADJ", "NOUN", "ADJ"], ["ADJ", "ADJ", "NOUN"]], 5),
+        compose_line([["VERB", "PREP", "NOUN"]], 7),
+        compose_line([["ADJ", "NOUN"], ["VERB", "VERB"]], 5)
+    ]
 
 def main():
     result = ""
