@@ -23,9 +23,13 @@ import json
 def parse_json(filename = "words.json"):
     with open(filename) as json_file:
         raw_json_data = json_file.read()
-        json_data = json.loads(raw_json_data)
+        try:
+            json_data = json.loads(raw_json_data)
+            return json_data
+        except json.decoder.JSONDecodeError:
+            print("invalid format of word list.\nExiting.")
+            exit(1)
 
-        return json_data
 
 
 # General procedure: pick a pattern -> pick words -> add nouns if there are syllables left
