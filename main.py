@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 import random
 import math
+import json
 
 # 5-7-5
 
 # TODO
-# Read from external word list. Needs format and simple parser
 # Make own composite nouns
 # Pattern definition syntax
 # Improved syllable fill logic (more than just nouns)
@@ -20,41 +20,23 @@ import math
 # 2: VERB-PREP-NOUN
 # 3: ADJ-NOUN
 
-WORDS = {
-    "ADV": [
-        ["raskt", "høyt", "fort", "svalt"],
-        ["voldsomt", "sakte"],
-        ["duvende", "angrende", "flygende", "susende"]
-    ],
+def parse_json(filename = "words.json"):
+    with open(filename) as json_file:
+        raw_json_data = json_file.read()
+        try:
+            json_data = json.loads(raw_json_data)
+            return json_data
+        except json.decoder.JSONDecodeError:
+            print("invalid format of word list.\nExiting.")
+            exit(1)
 
-    "ADJ": [
-        ["rød", "grønn", "sval", "blek", "sprø", "klam"],
-        ["skalla", "vannløs", "smidig", "vakker", "grove", "morken", "skorpe"]
-    ],
-
-
-    "NOUN": [
-        ["katt", "bil", "hus", "tre", "stonks", "sprut", "sprø"],
-        ["Skedsmo", "Tempe", "Tåsen", "katte", "grantre", "måne", "månen", "dåse", "trerot", "skorpe"],
-        ["kjøttkake"]
-    ]
-    ,
-
-    "VERB": [
-        ["går", "står", "får"],
-        ["løper", "vever", "holder", "spiser"]
-    ],
-
-    "PREP": [
-        ["på", "under", "ved"],
-        ["mellom", "oppå"]
-    ]
-}
 
 
 # General procedure: pick a pattern -> pick words -> add nouns if there are syllables left
 
 def compose_line(patterns, syllables):
+
+    WORDS = parse_json()
 
     pattern_index = math.floor(random.random()*len(patterns))
     pattern = patterns[pattern_index]
