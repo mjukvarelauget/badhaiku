@@ -13,7 +13,9 @@ import json
 # Passing pattern list til line composer should give a random pattern
 # Richer dictionary, proper adjective conjugation wrt noun gender etc
 # Richer grammar, context free rules to allow generating the structure of a sentence
-# Implement the NGL lexer and parser, provide backend for the haiku generator
+# Implement the NGL lexer and parser as frontend, provide backend for the haiku generator
+# Vektmønster
+# Rhyme
 
 # If more syllables are needed, add nouns
 # 1: ADJ-NOUN | ADJ | NOUN | VERB | PREP-NOUN
@@ -66,8 +68,10 @@ def main():
     result = ""
     result += compose_line([["ADJ", "NOUN", "ADJ"], ["ADJ", "ADJ", "NOUN"]], 5) + "\n"
     result += compose_line([["VERB", "PREP", "NOUN"]], 7) + "\n"
-    result += compose_line([["ADJ", "NOUN"], ["VERB", "VERB"]], 5) + "\n"
+    result += compose_line([["ADJ", "NOUN"], ["VERB", "VERB", "VERB"]], 5) + "\n"
 
     print(result)
 
 main()
+
+
