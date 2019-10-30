@@ -1,0 +1,34 @@
+{
+    "ADV": [
+      ["raskt", "høyt", "fort", "svalt"],
+      ["voldsomt", "sakte"],
+      ["duvende", "angrende", "flygende", "susende"],
+      [],
+      ["månebedotten"]
+    ],
+
+    "ADJ": [
+      ["rød", "grønn", "sval", "blek", "sprø", "klam", "låk", "ond"],
+      ["skalla", "vannløs", "smidig", "vakker", "grove", "morken", "skorpe",
+	     "fole", "kjøle", "snekje", "leken"]
+    ],
+
+
+    "NOUN": [
+      ["katt", "bil", "hus", "tre", "sprut", "sprø"],
+      ["kaffe", "Skedsmo", "Tempe", "Tåsen", "katte", "grantre",
+	     "måne", "månen", "dåse", "trerot", "skorpe"],
+      ["kjøttkake", "tyttebær", "alkohol"]
+    ]
+    ,
+
+    "VERB": [
+      ["går", "står", "får"],
+      ["løper", "vever", "holder", "spiser", "drikker"]
+    ],
+
+    "PREP": [
+      ["på", "under", "ved", "til"],
+      ["mellom", "oppå"]
+    ]
+}
