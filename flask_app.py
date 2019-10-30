@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from haiku import haiku_as_list
+from .haiku import haiku_as_list
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -10,4 +10,4 @@ def get_haiku():
     return jsonify({'haiku': haiku_as_list()})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
