@@ -10,4 +10,5 @@ def get_haiku():
     return jsonify({'haiku': haiku_as_list()})
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
+    
