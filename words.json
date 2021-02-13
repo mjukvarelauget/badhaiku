@@ -1,14 +1,14 @@
 {
   "ADV": [
     ["raskt", "høyt", "fort", "svalt"],
-    ["voldsomt", "sakte"],
-    ["duvende", "angrende", "flygende", "susende"]
+    ["voldsomt", "sakte", "stille", "edelt"],
+    ["duvende", "angrende", "flygende", "susende", "rullende"]
   ],
 
   "ADJ": [
-    ["rød", "grønn", "sval", "blek", "sprø", "klam", "låk", "ond"],
-    ["skalla", "vannløs", "smidig", "vakker", "grove", "morken", "skorpe",
-	   "fole", "kjøle", "snekje", "leken", "skamslått"],
+    ["rød", "grønn", "sval", "blek", "sprø", "klam", "låk", "ond", "mjuk", "skjult"],
+    ["skalla", "vannløs", "smidig", "vakker", "grove", "morken", "skorpe", "fole",
+     "kjøle", "snekje", "leken", "skamslått", "fælen", "valen"],
     [],
     [],
     ["månebedotten"]
@@ -16,20 +16,19 @@
 
 
   "NOUN": [
-    ["katt", "bil", "hus", "tre", "sprut", "sprø"],
-    ["kaffe", "Skedsmo", "Tempe", "Tåsen", "katte", "grantre",
-	   "måne", "månen", "dåse", "trerot", "skorpe"],
-    ["kjøttkake", "tyttebær", "alkohol"]
-  ]
-  ,
+    ["katt", "bil", "hus", "tre", "sprut", "sprø", "fjell", "sjø", "skog", "eng"],
+    ["kaffe", "Skedsmo", "Tempe", "Bjølsen","Tåsen", "katte", "grantre", "måne",
+     "månen", "dåse", "trerot", "skorpe", "svele"],
+    ["kjøttkake", "tyttebær", "alkohol", "Gerhardsen"]
+  ],
 
   "VERB": [
-    ["går", "står", "får"],
-    ["løper", "vever", "holder", "spiser", "drikker", "gnikker"]
+    ["går", "står", "får", "gir", "satt", "ser"],
+    ["løper", "vever", "holder", "spiser", "drikker", "gnikker", "lyser", "blekner", "faller"]
   ],
 
   "PREP": [
-    ["på", "under", "ved", "til"],
-    ["mellom", "oppå"]
+    ["på", "under", "ved", "til", "hos"],
+    ["mellom", "oppå", "under"]
   ]
 }

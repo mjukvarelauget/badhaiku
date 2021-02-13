@@ -28,7 +28,8 @@ def parse_json(filename = "words.json"):
         try:
             json_data = json.loads(raw_json_data)
             return json_data
-        except json.decoder.JSONDecodeError:
+        except json.decoder.JSONDecodeError as e:
+            print(e)
             print("invalid format of word list.\nExiting.")
             exit(1)
 
@@ -46,8 +47,13 @@ def compose_line(patterns, syllables):
     result = ""
     for word_class in pattern:
         length = min(math.ceil(random.random()*syllables), len(WORDS[word_class]))
-        word_index = math.floor(random.random()*len(WORDS[word_class][length-1]))
+        # Edge case where a word class have no words of a specific length
+        # In this case, try again!
+        while(len(WORDS[word_class][length-1]) < 1):
+            length = min(math.ceil(random.random()*syllables), len(WORDS[word_class]))
 
+        word_index = math.floor(random.random()*len(WORDS[word_class][length-1]))
+        
         result += WORDS[word_class][length-1][word_index] + " "
         syllables -= length
         if(syllables < 1): break
