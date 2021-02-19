@@ -40,7 +40,8 @@ def parse_json(filename = "words.json"):
 def compose_line(patterns, syllables):
 
     WORDS = parse_json()
-
+    wordclasses = list(WORDS.keys())
+    
     pattern_index = math.floor(random.random()*len(patterns))
     pattern = patterns[pattern_index]
 
@@ -59,16 +60,27 @@ def compose_line(patterns, syllables):
         if(syllables < 1): break
 
 
-    # Pad with nouns (or random classes?)
+    # Pad with random words
     while(syllables > 0):
-        length = min(math.ceil(random.random()*syllables), len(WORDS["NOUN"]))
-        word_index = math.floor(random.random()*len(WORDS["NOUN"][length-1]))
+        num_wordclasses = len(wordclasses)
+        random_wordclass_index = math.floor(random.random()*num_wordclasses)
+        random_wordclass = wordclasses[random_wordclass_index]
 
-        result += WORDS["NOUN"][length-1][word_index] + " "
+        length = min(math.ceil(random.random()*syllables), len(WORDS[random_wordclass]))
+        word_index = math.floor(random.random()*len(WORDS[random_wordclass][length-1]))
+        
+        result += WORDS[random_wordclass][length-1][word_index] + " "
         syllables -= length
 
     return result
 
+# When the module is used as a service, we need the output formated
+def haiku_as_list():
+    return [
+        compose_line([["ADJ", "NOUN", "ADJ"], ["ADJ", "ADJ", "NOUN"]], 5),
+        compose_line([["VERB", "PREP", "NOUN"]], 7),
+        compose_line([["ADJ", "NOUN"], ["VERB", "VERB"]], 5)
+    ]
 
 def main():
     result = ""
