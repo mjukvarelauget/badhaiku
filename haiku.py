@@ -61,10 +61,14 @@ def compose_line(patterns, syllables):
 
     # Pad with nouns (or random classes?)
     while(syllables > 0):
-        length = min(math.ceil(random.random()*syllables), len(WORDS["NOUN"]))
-        word_index = math.floor(random.random()*len(WORDS["NOUN"][length-1]))
-
-        result += WORDS["NOUN"][length-1][word_index] + " "
+        num_wordclasses = len(wordclasses)
+        random_wordclass_index = math.floor(random.random()*num_wordclasses)
+        random_wordclass = wordclasses[random_wordclass_index]
+        
+        length = min(math.ceil(random.random()*syllables), len(WORDS[random_wordclass]))
+        word_index = math.floor(random.random()*len(WORDS[random_wordclass][length-1]))
+        
+        result += WORDS[random_wordclass][length-1][word_index] + " "
         syllables -= length
 
     return result
