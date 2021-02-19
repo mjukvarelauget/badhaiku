@@ -40,7 +40,8 @@ def parse_json(filename = "words.json"):
 def compose_line(patterns, syllables):
 
     WORDS = parse_json()
-
+    wordclasses = list(WORDS.keys())
+    
     pattern_index = math.floor(random.random()*len(patterns))
     pattern = patterns[pattern_index]
 
@@ -89,4 +90,4 @@ def main():
 
     print(result)
     
-#main()
+main()
