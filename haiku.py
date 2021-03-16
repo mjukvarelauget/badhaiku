@@ -35,7 +35,7 @@ def parse_json(filename = "words.json"):
 
 
 
-# General procedure: pick a pattern -> pick words -> add nouns if there are syllables left
+# General procedure: pick a pattern -> pick words -> add random words to pad if there are syllables left
 
 def compose_line(patterns, syllables):
 
@@ -45,9 +45,12 @@ def compose_line(patterns, syllables):
     pattern_index = math.floor(random.random()*len(patterns))
     pattern = patterns[pattern_index]
 
+    # Go through all word classes in the provided pattern,
+    # and replace them with words within the syllable budget
     result = ""
     for word_class in pattern:
         length = min(math.ceil(random.random()*syllables), len(WORDS[word_class]))
+
         # Edge case where a word class have no words of a specific length
         # In this case, try again!
         while(len(WORDS[word_class][length-1]) < 1):
@@ -60,21 +63,23 @@ def compose_line(patterns, syllables):
         if(syllables < 1): break
 
 
-    # Pad with random words
+    # If there are any remaining syllables to be filled,
+    # pad with random words untill the syllable budget is spent 
     while(syllables > 0):
         num_wordclasses = len(wordclasses)
         random_wordclass_index = math.floor(random.random()*num_wordclasses)
         random_wordclass = wordclasses[random_wordclass_index]
-
+        
         length = min(math.ceil(random.random()*syllables), len(WORDS[random_wordclass]))
         word_index = math.floor(random.random()*len(WORDS[random_wordclass][length-1]))
         
         result += WORDS[random_wordclass][length-1][word_index] + " "
         syllables -= length
 
-    return result
+    # Trim the trailing space and return
+    return result.rstrip()
 
-# When the module is used as a service, we need the output formated
+
 def haiku_as_list():
     return [
         compose_line([["ADJ", "NOUN", "ADJ"], ["ADJ", "ADJ", "NOUN"]], 5),
@@ -86,10 +91,8 @@ def main():
     result = ""
     result += compose_line([["ADJ", "NOUN", "ADJ"], ["ADJ", "ADJ", "NOUN"]], 5) + "\n"
     result += compose_line([["VERB", "PREP", "NOUN"]], 7) + "\n"
-    result += compose_line([["ADJ", "NOUN"], ["VERB", "VERB", "VERB"]], 5) + "\n"
+    result += compose_line([["ADJ", "NOUN"], ["VERB", "VERB", "VERB"]], 5)
 
     print(result)
-
-#main()
-
-
+    
+main()
