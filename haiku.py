@@ -93,6 +93,6 @@ def main():
     result += compose_line([["VERB", "PREP", "NOUN"]], 7) + "\n"
     result += compose_line([["ADJ", "NOUN"], ["VERB", "VERB", "VERB"]], 5)
 
-    print(result)
+    print(result, end = '')
     
 main()
