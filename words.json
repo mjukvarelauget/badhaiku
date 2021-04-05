@@ -8,17 +8,22 @@
   "ADJ": [
     ["rød", "grønn", "sval", "blek", "sprø", "klam", "låk", "ond", "mjuk", "skjult"],
     ["skalla", "vannløs", "smidig", "vakker", "grove", "morken", "skorpe", "fole",
-     "kjøle", "snekje", "leken", "skamslått", "fælen", "valen"],
-    [],
-    [],
+     "kjøle", "snekje", "leken", "skamslått", "fælen", "valen", "småfeit", "nidkjær"],
+    ["pragmatisk", "velholden", "korpulent", "forfjamset"],
+    ["geleaktig", "himmelfallen", "menneskelig"],
     ["månebedotten"]
   ],
 
-
+    "ASK": [
+	["hvem", "hva", "hvor", "hvis"],
+	["hvordan"]
+    ],
+    
   "NOUN": [
-    ["katt", "bil", "hus", "tre", "sprut", "sprø", "fjell", "sjø", "skog", "eng"],
-    ["kaffe", "Skedsmo", "Tempe", "Bjølsen","Tåsen", "katte", "grantre", "måne",
-     "månen", "dåse", "trerot", "skorpe", "svele"],
+    ["katt", "bil", "hus", "tre", "sprut", "sprø", "fjell",
+     "sjø", "skog", "eng", "knopp"],
+    ["kaffe", "Skedsmo", "Tempe", "Bjølsen", "Tåsen", "katte", "grantre", "måne",
+     "månen", "dåse", "trerot", "skorpe", "svele", "gresskar", "snøball", "ølboks"],
     ["kjøttkake", "tyttebær", "alkohol", "Gerhardsen"]
   ],
 

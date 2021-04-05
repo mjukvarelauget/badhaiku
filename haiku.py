@@ -50,7 +50,20 @@ def compose_line(patterns, syllables):
     # Go through all word classes in the provided pattern,
     # and replace them with words within the syllable budget
     result = ""
+    result_front = ""
+    result_back = ""
+
     for word_class in pattern:
+        append_to_back = False
+        if(word_class[0] == "_"):
+            word_class = word_class[1:]
+            append_to_back = True
+
+        if(word_class[0] == "^"):
+            del WORDS[word_class[1:]]
+            wordclasses = list(WORDS.keys())
+            continue
+            
         length = min(math.ceil(random.random()*syllables), len(WORDS[word_class]))
 
         # Edge case where a word class have no words of a specific length
@@ -60,11 +73,15 @@ def compose_line(patterns, syllables):
 
         word_index = math.floor(random.random()*len(WORDS[word_class][length-1]))
         
-        result += WORDS[word_class][length-1][word_index] + " "
+        if(append_to_back):
+            result_back = WORDS[word_class][length-1][word_index] + result_back
+        else:
+            result_front += WORDS[word_class][length-1][word_index] + " "
+
         syllables -= length
         if(syllables < 1): break
 
-
+        
     # If there are any remaining syllables to be filled,
     # pad with random words untill the syllable budget is spent
     while(syllables > 0):
@@ -78,14 +95,13 @@ def compose_line(patterns, syllables):
             length = min(math.ceil(random.random()*syllables), len(WORDS[random_wordclass]))
 
         word_index = math.floor(random.random()*len(WORDS[random_wordclass][length-1]))
-        
-        print(random_wordclass, length-1, word_index)
-        print(WORDS[random_wordclass][length-1])
-        result += WORDS[random_wordclass][length-1][word_index] + " "
+
+        result_front += WORDS[random_wordclass][length-1][word_index] + " "
         syllables -= length
 
+    result = result_front + result_back
     # Trim the trailing space and return
-    return result.rstrip()
+    return result.strip()
 
 
 def haiku_as_list():
@@ -97,9 +113,9 @@ def haiku_as_list():
 
 def main():
     result = ""
-    result += compose_line([], 5) + "\n"
-    result += compose_line([], 7) + "\n"
-    result += compose_line([], 5)
+    result += compose_line([["^ASK", "NOUN", "ADJ"], ["^ASK", "NOUN"]], 5) + "\n"
+    result += compose_line([["^ASK", "NOUN", "_PREP"], ["NOUN", "_ASK"], []], 7) + "\n"
+    result += compose_line([["ADJ","NOUN"], ["NOUN", "_ADV"]], 5) + "\n"
 
     print(result, end = '')
     
