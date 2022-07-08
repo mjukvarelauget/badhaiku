@@ -34,7 +34,10 @@ def parse_json(filename = "words.json"):
             exit(1)
 
 
-
+def get_random_element(list):
+    random_index = math.floor(random.random()*len(list))
+    return list[random_index]
+    
 # General procedure: pick a pattern -> pick words -> add random words to pad if there are syllables left
 
 def compose_line(patterns, syllables):
@@ -55,14 +58,17 @@ def compose_line(patterns, syllables):
 
     for word_class in pattern:
         append_to_back = False
+        
         if(word_class[0] == "_"):
             word_class = word_class[1:]
             append_to_back = True
 
         if(word_class[0] == "^"):
-            del WORDS[word_class[1:]]
-            wordclasses = list(WORDS.keys())
-            continue
+            def is_legal_word_class(test_word_class):
+                return test_word_class != word_class[1:]
+                
+            available_wordclasses = list(filter(is_legal_word_class, list(WORDS.keys())))
+            word_class = get_random_element(available_wordclasses)
             
         length = min(math.ceil(random.random()*syllables), len(WORDS[word_class]))
 
