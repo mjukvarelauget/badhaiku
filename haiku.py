@@ -125,5 +125,7 @@ def main():
     result += compose_line([["ADJ","NOUN"], ["NOUN", "_ADV"]], 5) + "\n"
 
     print(result, end = '')
-    
-main()
+
+# Only run main if invoked as script
+if(__name__ == '__main__'):
+    main()
