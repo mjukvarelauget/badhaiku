@@ -3,6 +3,7 @@
 import random
 import math
 import json
+import os
 
 # 5-7-5
 
@@ -22,7 +23,7 @@ import json
 # 2: VERB-PREP-NOUN
 # 3: ADJ-NOUN
 
-def parse_json(filename = "words.json"):
+def parse_json(filename = os.path.dirname(__file__)+"/words.json"):    
     with open(filename) as json_file:
         raw_json_data = json_file.read()
         try:
